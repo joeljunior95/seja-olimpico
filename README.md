@@ -6,3 +6,5 @@ Libraries:
   * paper.js: http://paperjs.org/about/ para fazer as animações
   
 Dar uma olhada em CSS: Transition, Animation and Transforms
+
+Talvez seja melhor usar SVG no lugar do paper.
