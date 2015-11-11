@@ -7,7 +7,7 @@
         <script src="js/jquery-2.1.4.min.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/js.cookie.js"></script>
+        <script src="js/svg4everybody.js"></script>
         <script src="js/raphael-min.js"></script>
         <style>
             circle{
@@ -19,7 +19,7 @@
         </style>
     </head>
     <body>
-        <div id="svg">
+        <div id="teia-svg">
             <!--            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 1024 768" enable-background="new 0 0 1024 768" xml:space="preserve" onload="loadSvg(this)">
             
@@ -45,9 +45,13 @@
         <script>
             var first;
             var loadSvg = function (svg) {
-                if (Cookies.get('teia')) {
-                    svg.innerHTML = Cookies.get('teia');
+                if (typeof (Storage) !== "undefined") {
+                    if (localStorage.getItem('teia')) {
+                        svg.innerHTML = localStorage.getItem('teia');
+                        return true;
+                    }
                 }
+                return false;
             };
             var func = function (svg, circle) {
                 if (!first) {
@@ -60,12 +64,14 @@
                             " L" + circle.getAttribute("cx") + " " + circle.getAttribute("cy") + "' />";
                     svg.innerHTML = html;
                     first = '';
-                    Cookies.set('teia', svg.innerHTML, {expires: 1/10000000000000000000000000000000000000000000000000000});
+                    if (typeof (Storage) !== "undefined") {
+                        localStorage.setItem("teia", svg.innerHTML);
+                    }
                 }
             };
-            
+
             window.onload = function () {
-                var paper = new Raphael(document.getElementById('svg'), 1024, 768);
+                var paper = new Raphael(document.getElementById('teia-svg'), 1024, 768);
                 paper.circle(146.7, 92, 13);
                 paper.circle(331.5, 547, 13.5);
                 paper.circle(516.1, 325, 13);
@@ -73,16 +79,18 @@
                 paper.circle(851.1, 456.6, 12);
                 paper.circle(649.6, 606.6, 21.3);
 
-                var svg = document.getElementById('svg').firstChild;
-                loadSvg(svg);
-                var circles = svg.childNodes;
+                var svg = document.getElementById('teia-svg').firstChild;
+                if (!loadSvg(svg)) {
+                    var circles = svg.childNodes;
 
-                for (var i = 0; i < circles.length; i++) {
-                    if (circles[i].nodeName === 'circle') {
-                        circles[i].setAttribute("onclick", "func(this.parentNode, this)");
-                        circles[i].setAttribute("fill", "#CCCCCC");
+                    for (var i = 0; i < circles.length; i++) {
+                        if (circles[i].nodeName === 'circle') {
+                            circles[i].setAttribute("onclick", "func(this.parentNode, this)");
+                            circles[i].setAttribute("fill", "#CCCCCC");
+                        }
                     }
                 }
+                svg4everybody();
             };
         </script>
     </body>
