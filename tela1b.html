@@ -49,40 +49,31 @@
                     svg.innerHTML = Cookies.get('teia');
                 }
             };
-            var func = function (svg, circle) {
+            var drawLine = function (paper, circle) {
                 if (!first) {
                     first = circle;
-                    circle.setAttribute("fill", "#A51919");
+                    circle.attr({"fill" : "#A51919"});
                 } else if (first !== circle) {
-                    circle.setAttribute("fill", "#A51919");
-                    var html = svg.innerHTML + "<path fill='none' stroke='#A51919' stroke-width='3' stroke-miterlimit='10' d='M" +
-                            first.getAttribute("cx") + " " + first.getAttribute("cy") +
-                            " L" + circle.getAttribute("cx") + " " + circle.getAttribute("cy") + "' />";
-                    svg.innerHTML = html;
+                    circle.attr({"fill" : "#A51919"});
+                    paper.path("M" + first.attr("x") + "," + first.attr("y") + "L" + circle.attr("x") + "," + circle.attr("y"));
                     first = '';
-                    Cookies.set('teia', svg.innerHTML, {expires: 1/10000000000000000000000000000000000000000000000000000});
                 }
+            };
+            
+            var drawCircle = function(paper, x, y, r){
+                var circle = paper.circle(x, y, r);
+                circle.attr({fill: "#CCCCCC"});
+                circle.click(drawLine(paper, circle));
             };
             
             window.onload = function () {
                 var paper = new Raphael(document.getElementById('svg'), 1024, 768);
-                paper.circle(146.7, 92, 13);
-                paper.circle(331.5, 547, 13.5);
-                paper.circle(516.1, 325, 13);
-                paper.circle(727.1, 72, 24);
-                paper.circle(851.1, 456.6, 12);
-                paper.circle(649.6, 606.6, 21.3);
-
-                var svg = document.getElementById('svg').firstChild;
-                loadSvg(svg);
-                var circles = svg.childNodes;
-
-                for (var i = 0; i < circles.length; i++) {
-                    if (circles[i].nodeName === 'circle') {
-                        circles[i].setAttribute("onclick", "func(this.parentNode, this)");
-                        circles[i].setAttribute("fill", "#CCCCCC");
-                    }
-                }
+                drawCircle(paper, 146.7, 92, 13);
+                drawCircle(paper, 331.5, 547, 13.5);
+                drawCircle(paper, 516.1, 325, 13);
+                drawCircle(paper, 727.1, 72, 24);
+                drawCircle(paper, 851.1, 456.6, 12);
+                drawCircle(paper, 649.6, 606.6, 21.3);
             };
         </script>
     </body>
