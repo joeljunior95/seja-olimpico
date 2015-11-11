@@ -45,6 +45,7 @@
         <script>
             var first;
             var loadSvg = function (svg) {
+                svg4everybody();
                 if (typeof (Storage) !== "undefined") {
                     if (localStorage.getItem('teia')) {
                         svg.innerHTML = localStorage.getItem('teia');
@@ -71,6 +72,7 @@
             };
 
             window.onload = function () {
+                svg4everybody();
                 var paper = new Raphael(document.getElementById('teia-svg'), 1024, 768);
                 paper.circle(146.7, 92, 13);
                 paper.circle(331.5, 547, 13.5);
