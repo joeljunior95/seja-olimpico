@@ -24,7 +24,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class="svg">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="0 0 1024 768" enable-background="new 0 0 1024 768" xml:space="preserve" onload="loadSvg(this)">
 
             <circle class="circle" onclick="func(this.parentNode, this)" fill="#CCCCCC" cx="146.7" cy="92" r="13"/>
@@ -67,7 +67,6 @@ and open the template in the editor.
                     svg.innerHTML = html;
                     first = '';
                     Cookies.set('teia', svg.innerHTML, {expires: 365});
-                    console.log(Cookies.get('teia'));
                 }
             };
 
