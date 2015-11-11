@@ -27,8 +27,7 @@
                     line.setAttribute("x2", circle.getAttribute("cx"));
                     line.setAttribute("y2", circle.getAttribute("cy"));
                     svg.appendChild(line);
-                    first = '';
-                    console.log(svg.appendChild(line));
+                    first = '';  
                 }
             };
         ]]>
