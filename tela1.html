@@ -19,36 +19,21 @@
     </head>
     <body>
         <div id="teia-svg">
-            <!--            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                             viewBox="0 0 1024 768" enable-background="new 0 0 1024 768" xml:space="preserve" onload="loadSvg(this)">
-            
-                        <circle class="circle" onclick="func(this.parentNode, this)" fill="#CCCCCC" cx="146.7" cy="92" r="13"/>
-                        <text transform="matrix(1 0 0 1 109.4467 135.1098)" font-family="'MyriadPro-Regular'" font-size="24.2249">Futebol</text>
-            
-                        <circle class="circle" onclick="func(this.parentNode, this)" fill="#CCCCCC" cx="331.5" cy="547" r="13.5"/>
-                        <text transform="matrix(1 0 0 1 306.7302 594.6094)" font-family="'MyriadPro-Regular'" font-size="24.2249">Volêi</text>
-            
-                        <circle class="circle" onclick="func(this.parentNode, this)" fill="#CCCCCC" cx="516.1" cy="325" r="13"/>
-                        <text transform="matrix(1 0 0 1 478.9363 370.11)" font-family="'MyriadPro-Regular'" font-size="24.2249">Corrida</text>
-            
-                        <circle class="circle" onclick="func(this.parentNode, this)" fill="#CCCCCC" cx="727.1" cy="72" r="24"/>
-                        <text transform="matrix(1 0 0 1 678.8239 121.6101)" font-family="'MyriadPro-Regular'" font-size="24.2249">Basquete</text>
-            
-                        <circle class="circle" onclick="func(this.parentNode, this)" fill="#CCCCCC" cx="851.1" cy="456.6" r="12"/>
-                        <text transform="matrix(1 0 0 1 831.3718 499.6759)" font-family="'MyriadPro-Regular'" font-size="24.2249">Surf</text>
-            
-                        <circle class="circle" onclick="func(this.parentNode, this)" fill="#CCCCCC" cx="649.6" cy="606.6" r="21.3"/>
-                        <text transform="matrix(1 0 0 1 623.836 654.0024)" font-family="'MyriadPro-Regular'" font-size="24.2249">Golfe</text>
-                        </svg>-->
         </div>
-        <div class="row"><button class="btn btn-warning" onclick="reset()">Reset!</button></div>
+        <div class="row">
+            <div class="col-md-4 pull-right">
+                <button class="btn btn-warning" onclick="reset()">Reset!</button>
+            </div>
+        </div>
         <script>
             var first;
+            
             var saveSvg = function (svg) {
                 if (typeof (Storage) !== "undefined") {
                     localStorage.setItem("teia", svg.innerHTML);
                 }
             };
+            
             var loadSvg = function (svg) {
                 if (typeof (Storage) !== "undefined") {
                     if (localStorage.getItem('teia')) {
@@ -58,6 +43,7 @@
                 }
                 return false;
             };
+            
             var func = function (svg, circle) {
                 if (!first) {
                     first = circle;
@@ -85,11 +71,11 @@
             var reset = function () {
                 var svg = document.getElementById('teia-svg').firstChild;
                 var circles = svg.childNodes;
-                for (var i = 0; i < circles.length; i++) {
+                for (var i = (circles.length - 1 ); i >= 0; i--) {
                     if (circles[i].nodeName === 'circle') {
                         circles[i].setAttribute("onclick", "func(this.parentNode, this)");
                         circles[i].setAttribute("fill", "#CCCCCC");
-                    } else if (circles[i].nodeName === 'path') {
+                    } else if (circles[i].nodeName === 'path' || circles[i].nodeName === 'PATH') {
                         svg.removeChild(circles[i]);
                     }
                 }

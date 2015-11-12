@@ -15,17 +15,29 @@ and open the template in the editor.
         <script src="js/js.cookie.js"></script>
     </head>
     <body>
-        <div class="cookie"></div>
-        <button class="btn btn-danger">OI</button>
-        <canvas id="canvas"></canvas>
+        <div class="meses-svg"></div>
         <script>
-            Cookies.set('cookie1', 'um cookie');
-            $("button").on("click", function(){
-                var canvas = document.getElementById("canvas");
-                var ctx = canvas.getContext("2d");
-                ctx.fillStyle = "#FF0000";
-                ctx.fillRect(0,0,150,75);
-            });
+            var first;
+            
+            var saveSvg = function (svg) {
+                if (typeof (Storage) !== "undefined") {
+                    localStorage.setItem("meses", svg.innerHTML);
+                }
+            };
+            
+            var loadSvg = function (svg) {
+                if (typeof (Storage) !== "undefined") {
+                    if (localStorage.getItem('meses')) {
+                        svg.innerHTML = localStorage.getItem('meses');
+                        return true;
+                    }
+                }
+                return false;
+            };
+            
+            window.onload = function(){
+                
+            };
         </script>
     </body>
 </html>
