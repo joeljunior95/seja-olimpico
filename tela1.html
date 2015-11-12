@@ -7,7 +7,6 @@
         <script src="js/jquery-2.1.4.min.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/svg4everybody.js"></script>
         <script src="js/raphael-min.js"></script>
         <style>
             circle{
@@ -42,10 +41,15 @@
                         <text transform="matrix(1 0 0 1 623.836 654.0024)" font-family="'MyriadPro-Regular'" font-size="24.2249">Golfe</text>
                         </svg>-->
         </div>
+        <div class="row"><button class="btn btn-warning" onclick="reset()">Reset!</button></div>
         <script>
             var first;
+            var saveSvg = function (svg) {
+                if (typeof (Storage) !== "undefined") {
+                    localStorage.setItem("teia", svg.innerHTML);
+                }
+            };
             var loadSvg = function (svg) {
-                svg4everybody();
                 if (typeof (Storage) !== "undefined") {
                     if (localStorage.getItem('teia')) {
                         svg.innerHTML = localStorage.getItem('teia');
@@ -65,26 +69,40 @@
                             " L" + circle.getAttribute("cx") + " " + circle.getAttribute("cy") + "' />";
                     svg.innerHTML = html;
                     first = '';
-                    if (typeof (Storage) !== "undefined") {
-                        localStorage.setItem("teia", svg.innerHTML);
-                    }
+                    saveSvg(svg);
                 }
             };
 
-            window.onload = function () {
-                svg4everybody();
-                var paper = new Raphael(document.getElementById('teia-svg'), 1024, 768);
+            var drawCircles = function (paper) {
                 paper.circle(146.7, 92, 13);
                 paper.circle(331.5, 547, 13.5);
                 paper.circle(516.1, 325, 13);
                 paper.circle(727.1, 72, 24);
                 paper.circle(851.1, 456.6, 12);
                 paper.circle(649.6, 606.6, 21.3);
+            };
+
+            var reset = function () {
+                var svg = document.getElementById('teia-svg').firstChild;
+                var circles = svg.childNodes;
+                for (var i = 0; i < circles.length; i++) {
+                    if (circles[i].nodeName === 'circle') {
+                        circles[i].setAttribute("onclick", "func(this.parentNode, this)");
+                        circles[i].setAttribute("fill", "#CCCCCC");
+                    } else if (circles[i].nodeName === 'path') {
+                        svg.removeChild(circles[i]);
+                    }
+                }
+                saveSvg(svg);
+            };
+
+            window.onload = function () {
+                var paper = new Raphael(document.getElementById('teia-svg'), 1024, 768);
+                drawCircles(paper);
 
                 var svg = document.getElementById('teia-svg').firstChild;
                 if (!loadSvg(svg)) {
                     var circles = svg.childNodes;
-
                     for (var i = 0; i < circles.length; i++) {
                         if (circles[i].nodeName === 'circle') {
                             circles[i].setAttribute("onclick", "func(this.parentNode, this)");
@@ -92,7 +110,6 @@
                         }
                     }
                 }
-                svg4everybody();
             };
         </script>
     </body>
