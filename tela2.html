@@ -12,19 +12,20 @@ and open the template in the editor.
         <script src="js/jquery-2.1.4.min.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/js.cookie.js"></script>
     </head>
     <body>
-        <div class="meses-svg"></div>
+        <div id="meses-svg"></div>
+        <div class="row"><div class="col-md-6"><button class="btn btn-danger" onclick="saveSvg(document.querySelector('svg'))">Salvar</button></div></div>
         <script>
             var first;
-            
+
             var saveSvg = function (svg) {
                 if (typeof (Storage) !== "undefined") {
                     localStorage.setItem("meses", svg.innerHTML);
+                    alert('Salvo com sucesso!');
                 }
             };
-            
+
             var loadSvg = function (svg) {
                 if (typeof (Storage) !== "undefined") {
                     if (localStorage.getItem('meses')) {
@@ -34,9 +35,154 @@ and open the template in the editor.
                 }
                 return false;
             };
-            
-            window.onload = function(){
-                
+
+            var fillSvg = function (svg) {
+                svg.innerHTML += '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="343.8" y1="92" x2="426.8" y2="268.8"/>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="803.8" y1="126.8" x2="886.8" y2="303.6"/>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="566.8" y1="155" x2="649.8" y2="331.8"/>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="598.8" y1="445.6" x2="543.8" y2="569.4"/>' +
+                        '<circle class="m10" fill="#CCCCCC" cx="649.8" cy="326.6" r="42"/>' +
+                        '<circle class="m10" fill="#CCCCCC" cx="599.8" cy="445.6" r="42"/>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="649.8" y1="331.8" x2="594.8" y2="455.6"/>' +
+                        '<text transform="matrix(1 0 0 1 633.7291 331.7789)" font-family="MyriadPro-Regular" font-size="17.7013">Luta</text>' +
+                        '<text transform="matrix(1 0 0 1 581.8444 450.7861)" font-family="MyriadPro-Regular" font-size="17.7013">Judô</text>' +
+                        '<circle class="m10" fill="#CCCCCC" cx="548.8" cy="559.4" r="42"/>' +
+                        '<text transform="matrix(1 0 0 1 532.5524 564.5979)" font-family="MyriadPro-Regular" font-size="17.7013">Polo</text>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="90" y1="141" x2="187" y2="226.2"/>' +
+                        '<text transform="matrix(1 0 0 1 57.9998 68.2465)" font-family="MyriadPro-Regular" font-size="43.5">2015</text>' +
+                        '<text transform="matrix(1 0 0 1 823.0004 138.6094)" font-family="MyriadPro-Regular" font-size="39">Dezembro</text>' +
+                        '<circle id="8" class="mes" fill="#D8B91E" cx="90" cy="141" r="14"/>' +
+                        '<circle id="9" class="mes" fill="#D8B91E" cx="343.8" cy="92" r="14"/>' +
+                        '<circle id="10" class="mes" fill="#D8B91E" cx="562.9" cy="155" r="14"/>' +
+                        '<circle id="11" class="mes" fill="#D8B91E" cx="803.9" cy="127" r="14"/>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="375.8" y1="382.6" x2="320.8" y2="506.4"/>' +
+                        '<line fill="none" stroke="#D8B91E" stroke-width="3" stroke-miterlimit="10" x1="95" y1="135.1" x2="343.8" y2="92"/>' +
+                        '<line fill="none" stroke="#D8B91E" stroke-width="3" stroke-miterlimit="10" x1="343.8" y1="92" x2="562.9" y2="155"/>' +
+                        '<line fill="none" stroke="#D8B91E" stroke-width="3" stroke-miterlimit="10" x1="562.9" y1="155" x2="803.9" y2="127"/>' +
+                        '<text transform="matrix(0.9869 -0.1613 0.1613 0.9869 108.9884 126.9995)" font-family="MyriadPro-Regular" font-size="39">Setembro</text>' +
+                        '<text transform="matrix(0.9605 0.2783 -0.2783 0.9605 363.3923 86.2427)" font-family="MyriadPro-Regular" font-size="39">Outubro</text>' +
+                        '<text transform="matrix(0.9938 -0.1109 0.1109 0.9938 585.8621 144.6468)" font-family="MyriadPro-Regular" font-size="39">Novembro</text>' +
+                        '<circle class="m8" fill="#CCCCCC" cx="187" cy="221" r="42"/>' +
+                        '<circle class="m8" fill="#CCCCCC" cx="137" cy="340" r="42"/>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="187" y1="226.2" x2="132" y2="350"/>' +
+                        '<text transform="matrix(1 0 0 1 155.952 226.1953)" font-family="MyriadPro-Regular" font-size="17.7013">Ciclismo</text>' +
+                        '<text transform="matrix(1 0 0 1 108.9879 345.2023)" font-family="MyriadPro-Regular" font-size="17.7013">Triantlo</text>' +
+                        '<circle class="m9" fill="#CCCCCC" cx="426.8" cy="263.6" r="42"/>' +
+                        '<circle class="m9" fill="#CCCCCC" cx="376.8" cy="382.6" r="42"/>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="426.8" y1="268.8" x2="371.8" y2="392.6"/>' +
+                        '<text transform="matrix(1 0 0 1 406.9059 268.793)" font-family="MyriadPro-Regular" font-size="17.7013">Nado</text>' +
+                        '<text transform="matrix(1 0 0 1 336.7091 387.8001)" font-family="MyriadPro-Regular" font-size="17.7013">Canoagem</text>' +
+                        '<circle class="m9" fill="#CCCCCC" cx="325.8" cy="496.4" r="42"/>' +
+                        '<text transform="matrix(1 0 0 1 306.2335 501.6118)" font-family="MyriadPro-Regular" font-size="17.7013">Golfe</text>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="835.8" y1="417.4" x2="780.8" y2="541.2"/>' +
+                        '<circle class="m11" fill="#CCCCCC" cx="886.8" cy="298.4" r="42"/>' +
+                        '<circle class="m11" fill="#CCCCCC" cx="836.8" cy="417.4" r="42"/>' +
+                        '<line fill="none" stroke="#CCCCCC" stroke-width="3" stroke-miterlimit="10" x1="886.8" y1="303.6" x2="831.8" y2="427.4"/>' +
+                        '<text transform="matrix(1 0 0 1 858.4801 303.5781)" font-family="MyriadPro-Regular" font-size="17.7013">Goaball</text>' +
+                        '<text transform="matrix(1 0 0 1 822.8268 422.5849)" font-family="MyriadPro-Regular" font-size="17.7013">Tiro</text>' +
+                        '<circle class="m11" fill="#CCCCCC" cx="785.8" cy="531.2" r="42"/>' +
+                        '<text transform="matrix(1 0 0 1 769.5524 536.3967)" font-family="MyriadPro-Regular" font-size="17.7013">Luta</text>';
+            };
+
+            var fillMonth = function (svg) {
+                var month = (new Date()).getMonth();
+                for (var i = 0; i < 12; i++) {
+                    var circles = svg.querySelectorAll('.m' + i);
+                    for (var j = 0; j < circles.length; j++) {
+                        if (i === month) {
+                            circles[j].setAttribute("onclick", "carimbo(this.parentNode, this)");
+                        } else {
+                            circles[j].setAttribute("onclick", "");
+                        }
+                    }
+                }
+            };
+
+            var carimbo = function (svg, circle) {
+//                var x = circle.getAttribute("cx") - 16;
+//                var y = circle.getAttribute("cy") + 35.2;
+//                var html = '<g>' +
+//                        '<path fill="#BE1622" d="M' + x + ","+ y + 'c2.8,1.1,5.6,2.3,9.4,3.8c-2-2.8-3.9-4.5-4.2-6.4c-0.3-2.1,0.9-4.4,1.5-6.8' +
+//                        'c3.8,3.6,5.7,7.6,2.9,13.7c4.9,0,8.9,0,13.9,0c-2.6-5.8-1.2-9.8,2.5-13.1c2.7,5.5,2.7,5.5-2.1,12.3c3.5-1.1,6.3-2,9.8-3.1' +
+//                        'c-3.9-4.1-3.3-8.1-0.9-11.9c4,3.1,4.4,5,2.1,9.2c-0.4,0.7-0.3,1.7-0.6,3.2c-1.5,0.6-3.8,1.6-6.1,2.6c5.8,0.2,9.7,2.7,11.2,8.6' +
+//                        'c-5.1-1.2-12.7,1.6-12.1-8.6c-3.3,0.9-6,1.6-9,2.5c1.9,2.1,3.4,3.8,4.9,5.6c-0.3,0.4-0.7,0.7-1,1.1c-1.8-1.7-3.7-3.4-5.7-5.3' +
+//                        'c-2,1.9-3.8,3.6-5.7,5.3c-0.3-0.4-0.7-0.7-1-1.1c1.5-1.7,3-3.4,4.9-5.5c-2.8-0.8-5.4-1.6-7.7-2.3c-1.6,2.6-2.5,5.8-4.5,7' +
+//                        'c-2.3,1.4-5.7,1-8.7,1.5c2.1-5.6,2.4-5.8,11.5-8.5c-1.9-0.8-3.3-1.4-4.7-2c-1.4-0.6-2.8-1.2-4.7-2.1c-1.8,8.8-7.9,5-13.2,4.7' +
+//                        'c2.8-4.9,6.6-6.7,12.1-5.1c-0.9-1-1.8-2.1-2.7-3.1c0,0-0.1,0.1-0.1,0.1C115.6,372.6,118.3,374,121,375.2L121,375.2z"/>' +
+//                        '<path fill="#BE1622" d="M175.7,349c-3.3-2.3-6.8-4.4-6.6-9.4c3.4,0.9,7.1,1.4,6.5,6.8c2.5-3.5,1.7-5.3-1.4-7.1' +
+//                        'c-2.3-1.3-3.8-3.9-6.3-6.6c7.2,0.8,7.2,0.8,9.2,4.8c-0.2-1.2-0.4-2.4-0.6-3.7c0,0-0.1,0-0.1,0c0.6-0.3,1.9-0.7,1.9-0.9' +
+//                        'c-0.6-4.1,2.8-5.6,5.5-8.7c-0.2,3.2-0.3,5.6-0.6,7.9c-0.2,1-0.9,2.5-1.6,2.7c-4.9,1.2-3.9,4.8-3.4,8.4c0.8-4.6,3.7-7,7.8-8.2' +
+//                        'c-0.4,6.4-1.5,7.9-7,9.8c-0.8,0.3-1.3,1.6-2,2.4C176.6,348,176.1,348.5,175.7,349C175.6,349,175.7,349,175.7,349z"/>' +
+//                        '<path fill="#BE1622" d="M105.3,363.5c-1.3-0.4-3.1-1.4-3.8-0.9c-3.3,2.2-5.5,0.9-7.7-1.5c-1.1-1.2-2.4-2.2-3.6-3.4' +
+//                        'c4.7-1.8,8.6-1.3,12.1,2.4c-0.8-1.8-1.5-3.7-2.5-5.4c-0.3-0.5-1.6-1.1-2.2-0.9c-3.9,1.5-5.7-0.7-7.2-3.7c-0.7-1.3-1.6-2.6-2.4-3.9' +
+//                        'c6.9-1.2,9,4.8,13.4,8.2c-0.7-4.6,1.9-6.7,6.2-7.8c-0.7,3.4-0.1,7.1-4.2,8.9c-0.6,0.3-0.9,2.1-0.6,3c0.5,1.8,1.6,3.4,2.5,5' +
+//                        'L105.3,363.5z"/>' +
+//                        '<path fill="#BE1622" d="M105.2,363.6c0.2-0.6,0.8-1.3,0.7-1.7c-2-4.6,0.7-6.9,4.2-8.8c1.4,4.8,1.1,5.7-4.2,11.8' +
+//                        'c1.9,1.5,3.9,3,5.9,4.5c-2.5-4.9-0.7-8.2,3.8-10.9c0.7,3.9,1.7,7.6-2,10.6c-0.5,0.4-0.4,1.4-0.6,2.1c0,0,0.1-0.1,0.1-0.1' +
+//                        'c-1.3-0.7-2.6-1.4-4.3-2.4c-4.1,7.7-8.8,2.2-14.2,0.4c2.7-1.3,4.8-3,7-3.1c2-0.1,4.2,1.4,6.8,2.3c-1.2-2-2.1-3.4-3-4.9' +
+//                        'C105.3,363.5,105.2,363.6,105.2,363.6z"/>' +
+//                        '<path fill="#BE1622" d="M174.6,354.2c-0.6,2.1-1.2,4.2-2.1,7.5c3.5-4.6,7.2-6.3,12.2-3.8c-2,1.8-3.9,3.7-6,5.4' +
+//                        'c-0.6,0.5-1.9,0.8-2.5,0.4c-3.4-2.2-6.1-2.2-8.2,1.8c0.2-0.6,0.4-1.3,0.5-1.9c0,0-0.1,0.1-0.1,0.1c1.6-2.1,3.3-4.1,5.3-6.7' +
+//                        'c-4.6-2.2-6.6-5.6-6.1-10.4c3.2,1.4,6.8,2.4,5.7,7.3C173.3,353.9,174.2,354.1,174.6,354.2L174.6,354.2z"/>' +
+//                        '<path fill="#BE1622" d="M97.8,336c-0.1,0.6-0.1,1.2-0.2,1.8c1.3-3.9,4.4-4.8,8-5c-0.7,4.9-4.1,7.1-8.5,8.1c0.3-2.6-0.2-4.7-3.5-5.9' +
+//                        'c-1.1-0.4-1.7-3.1-2.1-4.8c-0.3-1.5-0.1-3.2-0.1-5.2c3.1,2.5,5.8,4.6,5.4,8.7C96.7,334.5,97.5,335.4,97.8,336' +
+//                        'C97.8,336.1,97.8,336,97.8,336z"/>' +
+//                        '<path fill="#BE1622" d="M176.5,334c-0.3-0.5-0.7-1.3-1-1.3c-4.1-0.1-5.9-3.1-8-6.9c3,0.7,5.4,1.2,7.7,1.8c0.7-3.1,1.6-7.1,2.5-11' +
+//                        'c0.4,0.1,0.9,0.1,1.3,0.2c0.5,2,1,4.1,1.3,6.2c0.1,1,0.2,2.6-0.3,2.9C176.8,327.7,177,331,176.5,334C176.5,334,176.5,334,176.5,334' +
+//                        'z"/>' +
+//                        '<path fill="#BE1622" d="M171.7,317.4c0.2-2.7,0.4-5.4,0.6-8.1c2.6,3.7,6.1,7,2.1,11.6c-0.7,0.7-0.1,2.5-0.1,3.9' +
+//                        'c-4.3,1.5-6.7-1.3-9.5-5c2.9,0.2,5.1,0.3,7.6,0.4c0-0.1,0-0.8,0-1.5C172.1,318.2,171.9,317.8,171.7,317.4z"/>' +
+//                        '<path fill="#BE1622" d="M171.7,317.4c0.2,0.4,0.5,0.8,0.7,1.2c-4.1,0.3-8.1,0.3-11-4.2c2.2-0.2,4.1-0.5,6.3-0.7' +
+//                        'c-0.2-0.6-0.4-1.2-0.7-1.9c-0.2-0.2-0.4-0.5-0.5-0.7c-0.3-2.5-0.5-4.9-0.9-8.4c3.4,3.8,7,6.3,4.6,11.4' +
+//                        'C169.8,314.8,171.1,316.3,171.7,317.4z"/>' +
+//                        '<path fill="#BE1622" d="M103,317.7c0.7-1.2,2.3-2.9,2-3.4c-2.9-5,1-7.4,4.4-10.3c-0.4,2.7-0.7,5.3-1.1,8c0,0,0.1-0.1,0.1-0.1' +
+//                        'c-0.6,0.3-1.2,0.6-1.8,0.8c0.2,0.3,0.4,0.6,0.6,0.9c2,0.2,4,0.5,6.2,0.8c-3.7,4.8-5.8,5.4-10.2,3.2' +
+//                        'C103.1,317.6,103,317.7,103,317.7z"/>' +
+//                        '<path fill="#BE1622" d="M180.9,369c-3.8,1.6-6.5,3.6-9.1,3.5c-2.4-0.1-4.7-2.5-7.2-3.9c2.7-0.9,5.1-2.4,7.5-2.3' +
+//                        'C174.8,366.3,177.3,367.8,180.9,369z"/>' +
+//                        '<path fill="#BE1622" d="M158.7,375.3c5.4-2.5,9.4-1.3,12.3,3.5C164.3,382.1,160.7,381.1,158.7,375.3z"/>' +
+//                        '<path fill="#BE1622" d="M88.5,335c5.6,2.4,9.7,7.6,9.6,11c-0.2-0.1-1.1-1.1-1.9-1c-5.3,0.3-6-3.7-7-7.4' +
+//                        'C88.9,336.8,88.7,336,88.5,335z"/>' +
+//                        '<path fill="#BE1622" d="M166.5,311.1c0.2,0.2,0.4,0.5,0.5,0.7c-3.9,2.9-7,0.9-10.4-1.8c1.7-0.6,3.2-1,4.6-1.5' +
+//                        'c-0.7-1.8-1.3-3.5-2.2-5.8c3.3,1.5,6,2.6,5.7,6.4C164.8,309.8,165.9,310.5,166.5,311.1z"/>' +
+//                        '<path fill="#BE1622" d="M108.2,312c0.6-0.9,1.6-1.7,1.9-2.7c1.1-4.1,1.1-4.2,5.8-6.7c-0.9,2.3-1.6,4.1-2.3,5.9' +
+//                        'c1.3,0.4,2.8,0.8,4.3,1.3C114.2,313.9,112.8,314.2,108.2,312C108.3,311.9,108.2,312,108.2,312z"/>' +
+//                        '<path fill="#BE1622" d="M100,325.9c-0.1,0.9-0.2,1.8-0.3,2.8c-0.2,0.6-0.5,1.2-0.7,1.8c-0.4-0.6-0.7-1.4-1.3-1.8' +
+//                        'c-5.5-3.5-2.6-7.9-1-12.2c1.1,3.2,2.2,6.4,3.3,9.6C100.1,326,100,325.9,100,325.9z"/>' +
+//                        '<path fill="#BE1622" d="M121,375.3c-4.6-5.8-4.6-5.8-0.1-12.1c2.9,6,2.9,6,0,12C121,375.2,121,375.3,121,375.3z"/>' +
+//                        '<path fill="#BE1622" d="M162.2,369.5c-4.6-2.5-3.7-6.5-2.7-10.5C165,362,165.5,363.8,162.2,369.5z"/>' +
+//                        '<path fill="#BE1622" d="M101.8,321.8c-4.3-4.8-4.3-5.2,0-12.3c0.4,0,0.8,0,1.1,0c0,2.7,0,5.5,0,8.2c0,0,0.1-0.1,0.1-0.2' +
+//                        'c-0.1,1.1-0.2,2.1-0.4,3.2C102.4,321.1,102.1,321.5,101.8,321.8z"/>' +
+//                        '<path fill="#BE1622" d="M168.5,363.5c-4.9-2.2-4.3-6.5-4.2-10.6C170.4,356.4,170.6,356.9,168.5,363.5' +
+//                        'C168.4,363.6,168.5,363.5,168.5,363.5z"/>' +
+//                        '<path fill="#BE1622" d="M101.8,321.8c0.3-0.4,0.6-0.7,0.9-1.1c2.2-0.4,4.5-0.9,7.2-1.4c-2,5.3-6.2,5.5-9.9,6.6c0,0,0.1,0.1,0.1,0.1' +
+//                        'C100.7,324.6,101.2,323.2,101.8,321.8z"/>' +
+//                        '<path fill="#BE1622" d="M99,330.4c0.2-0.6,0.5-1.2,0.7-1.8c2.3-1.1,4.5-2.1,6.8-3.2c0.2,0.4,0.4,0.7,0.6,1.1' +
+//                        'c-1.8,2.6-3,5.8-7.1,6.1c-0.8,0.1-1.5,2.2-2.2,3.4c0,0,0.1,0.1,0.1,0.1C98.2,334.2,98.6,332.3,99,330.4z"/>' +
+//                        '<path fill="#BE1622" d="M99.3,347.9c0-6.2,0.2-6.5,6.8-8.1C105,343.7,104.4,347.6,99.3,347.9z"/>' +
+//                        '</g>';
+//                svg.innerHTML += html;
+                circle.setAttribute("fill", "#FF0000");
+            };
+
+            window.onload = function () {
+                var paper = document.getElementById('meses-svg');
+                paper.innerHTML = '<svg height="768" version="1.1" width="1024"' +
+                        ' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"' +
+                        ' style="overflow: hidden; position: relative;"></svg>';
+                var svg = document.getElementById('meses-svg').firstChild;
+                fillSvg(svg);
+                loadSvg(svg);
+                fillMonth(svg);
+//                if (!loadSvg(svg)) {
+//                    var circles = svg.childNodes;
+//                    for (var i = 0; i < circles.length; i++) {
+//                        if (circles[i].nodeName === 'circle') {
+//                            circles[i].setAttribute("onclick", "func(this.parentNode, this)");
+//                            circles[i].setAttribute("fill", "#CCCCCC");
+//                        }
+//                    }
+//                }
             };
         </script>
     </body>
